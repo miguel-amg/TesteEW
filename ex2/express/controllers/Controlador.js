@@ -28,7 +28,7 @@ module.exports.findById = id => {
 
 // Inserir no mongo
 module.exports.insert = cont => {
-  if((Contrato.find({id : cont._id}).exec()).length != 1){
+  if((Contrato.find({id : cont.id}).exec()).length != 1){
       var newContrato = new Contrato(cont)
       return newContrato.save()
   }

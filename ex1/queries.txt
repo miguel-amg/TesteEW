@@ -11,4 +11,4 @@ EXERCICIO 4
 db.contratos.aggregate([{ $group: { _id: "$tipoprocedimento", total: { $sum: 1 } } }])
 
 EXERCICIO 5 
-db.contratos.aggregate([{ $group: { _id: "$entidade_comunicante", montante_global: { $sum: { $toDouble: "$precoContratual" } } } }])
+db.contratos.aggregate([{$addFields: {precoContratual: {$toDouble: {$replaceOne: { input: "$precoContratual", find: ",", replacement: "." }}}}},{$group: {_id: "$entidade_comunicante",montante_global: { $sum: "$precoContratual" }}}])
